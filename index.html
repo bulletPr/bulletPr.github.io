@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/tset-my-site/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85QGIS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/09/29/tset-my-site/" class="post-title-link" itemprop="url">tset_my_site</a>
+            <a href="/2020/09/29/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85QGIS/" class="post-title-link" itemprop="url">Ubuntu下安装QGIS</a>
         </h2>
 
         <div class="post-meta">
@@ -169,7 +169,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-09-29 19:32:02" itemprop="dateCreated datePublished" datetime="2020-09-29T19:32:02+02:00">2020-09-29</time>
+              <time title="Created: 2020-09-29 20:28:45" itemprop="dateCreated datePublished" datetime="2020-09-29T20:28:45+02:00">2020-09-29</time>
             </span>
 
           
@@ -183,7 +183,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>在Ubuntu中安装QGIS非常方便，不需要特地的去下载安装包，可以直接通过添加安装源输入ppa链接的方式安装<br>安装的QGIS版本是2.18<br> 1 进入终端Ctrl+Alt+T</p>
+<p> 2 获取root权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su  &#x2F;&#x2F;然后就会看见变成了第二行的root@username</span><br><span class="line">&#x2F;&#x2F;会让输入密码</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://img-blog.csdnimg.cn/img_convert/c19f1fc25acd12a646a4079604218956.png" alt="这里写图片描述"></p>
+<p>3 在sources.list文件添加安装源的：<br>3.1 进入sources.list文件编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim &#x2F;etc&#x2F;apt&#x2F;sources.list</span><br></pre></td></tr></table></figure>
+<p>3.2 在文章的末尾添加下面两行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;qgis.org&#x2F;ubuntugis trusty main</span><br><span class="line">deb-src http:&#x2F;&#x2F;qgis.org&#x2F;ubuntugis trusty main</span><br></pre></td></tr></table></figure>
+<p>保存并退出（vim中是wq）<br>其中：<br><a href="http://qgis.org/ubuntugis是资源库的位置，若你想要其它的你可以从下边找，对应的替换一下资源库：" target="_blank" rel="noopener">http://qgis.org/ubuntugis是资源库的位置，若你想要其它的你可以从下边找，对应的替换一下资源库：</a><br><img src="https://img-blog.csdnimg.cn/img_convert/bb5dbdbaa2d3c827fbcf9f7ea6a3a4d9.png" alt="这里写图片描述"><br>注意的是：Ubuntu14是trusty，但是要是其它版本对应的就替换为：<br><img src="https://img-blog.csdnimg.cn/img_convert/eaddf09d852a229847a1c795c39eaf36.png" alt="这里写图片描述"></p>
+<p>4 在终端中输入下面一行，让它更新下资源列表中的包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果你之前安装了QGIS和GRASS，记得先全部移除掉它们的包</span><br><span class="line">&#x2F;&#x2F;root 权限下</span><br><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<p>5 安装qgis的包，如果你需要其它的插件也可以一并在这里安装了：<br>在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;python-qgis qgis-plugin-grass装不装都可以，但我发现我没有装还是有grass的插件</span><br><span class="line">apt-get install qgis python-qgis qgis-plugin-grass</span><br></pre></td></tr></table></figure>
+<p>6 官网上说有可能碰到keyserver error，然后你可以添加公共密匙：在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O - http:&#x2F;&#x2F;qgis.org&#x2F;downloads&#x2F;qgis-2016.gpg.key | gpg --import gpg --fingerprint 073D307A618E5811</span><br></pre></td></tr></table></figure>
+<p>然后终端会输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pub   2048R&#x2F;618E5811 2016-08-17 [expires: 2017-08-17]</span><br><span class="line">      Key fingerprint &#x3D; 942D 6AD5 DF3E 75DE A9AF  72B2 073D 307A 618E 5811</span><br><span class="line">uid                  QGIS Archive Automatic Signing Key (2016) &lt;qgis-developer@lists.osgeo.org&gt;</span><br><span class="line">sub   2048R&#x2F;D34A963D 2016-08-17</span><br></pre></td></tr></table></figure>
+<p>你继续输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --export --armor 073D307A618E5811 | sudo apt-key add</span><br></pre></td></tr></table></figure>
+<p>但其实我没有让我输入key就安装好了，为了以防万一，我就写下来了<br>写得不好，大家将就着看下<br>刚刚接触Linux，还很菜，希望给大家多交流哈！！！</p>
+
       
     </div>
 
@@ -202,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/18/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/test-my-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -216,7 +237,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/18/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2020/09/29/test-my-blog/" class="post-title-link" itemprop="url">test_my_blog</a>
         </h2>
 
         <div class="post-meta">
@@ -226,7 +247,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-02-18 20:51:06" itemprop="dateCreated datePublished" datetime="2020-02-18T20:51:06+01:00">2020-02-18</time>
+              <time title="Created: 2020-09-29 20:24:42" itemprop="dateCreated datePublished" datetime="2020-09-29T20:24:42+02:00">2020-09-29</time>
             </span>
 
           
@@ -240,20 +261,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+          
       
     </div>
 
